@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "css/reg.css" %} type="text/css">
+    <title>Форма Регистрации</title>
+</head>
+<body>
+
+<h2>Регистрация</h2>
+<form action="/submit_registration" method="POST">
+    <label for="email">Почта:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="username">Логин:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="confirm-password">Подтверждение пароля:</label>
+    <input type="password" id="confirm-password" name="confirm-password" required>
+
+    <label for="age">Возраст:</label>
+    <input type="range" id="age" name="age" min="0" max="100" value="18" onchange="updateAgeLabel(value)">
+    <span id="age-label">18</span> лет
+
+    <label>
+        <input type="checkbox" name="privacy" required>
+        Я согласен на обработку персональных данных
+    </label>
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+<script>
+    function updateAgeLabel(value) {
+        document.getElementById('age-label').innerText = value;
+    }
+</script>
+
+</body>
+</html>
