@@ -1,17 +1,17 @@
-{% load static %}
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jssha@3.3.1/dist/sha.min.js"></script>
     <title>Авторизация</title>
-    <link rel="stylesheet" href={% static "css/login.css" %} type="text/css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
 </head>
 <body>
     <div class="login-container">
         <h2>Авторизация</h2>
-        <form action="/login" method="POST">
+        <form  id="loginForm" action="/login" method="GET">
             <div class="form-group">
                 <label for="username">Имя пользователя</label>
                 <input type="text" id="username" name="username" required>
@@ -25,8 +25,15 @@
             </div>
             <div class="message">
                 <p>Нет аккаунта? <a href="/registeration">Зарегистрироваться</a></p>
+                <p id="hashDisplay"> </p>
             </div>
         </form>
     </div>
+    
+    
 </body>
 </html>
+<script> // Хешируем после нажатия кнопки
+    
+</script>
+
