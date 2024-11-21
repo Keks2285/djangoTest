@@ -16,11 +16,9 @@ iconPass.addEventListener('click', () => {
     }
 });
 
-
-
 //надо подумать над этим стоит ли вообще так делать
 loginButton.addEventListener('click',async () => {
-    
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     let PASS =getSHA256Hash(document.getElementById('password').value);
     let FIO = document.getElementById('FIO').value;
 
@@ -37,16 +35,21 @@ loginButton.addEventListener('click',async () => {
     }));
 
     // //
-    await fetch('http://127.0.0.1:8000/login', {
+    const response = await fetch('http://127.0.0.1:8000/login/', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
         body: JSON.stringify({
             password: PASS,
-            fio: fio,
+            fio: FIO,
         }) // Ваши данные для отправки
-      }).then(res => res.json())
-      .then(data => console.log('Успешно:', data))
-      .catch(error => console.error('Ошибка:', error));
+      })
+      //alert(response.status);
+      if (response.status=200){
+        window.location.href = '/';
+      }
       
         // const username = inputUsername.value.trim();
         // const password = inputPass.value.trim();
